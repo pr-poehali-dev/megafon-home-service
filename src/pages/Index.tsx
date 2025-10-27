@@ -163,13 +163,13 @@ const Index = () => {
       <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <img 
                 src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
                 alt="МегаФон" 
-                className="h-10 w-10 object-contain"
+                className="h-12 w-12 object-contain"
               />
-              <span className="text-2xl font-bold text-primary">МегаФон</span>
+              <span className="text-2xl md:text-3xl font-bold text-primary">МегаФон</span>
             </div>
             
             <nav className="hidden md:flex items-center gap-6">
@@ -212,7 +212,14 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-4 md:space-y-6">
-              <Badge className="bg-secondary text-white hover:bg-secondary/90">Официальный дилер</Badge>
+              <div className="flex items-center gap-3">
+                <img 
+                  src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
+                  alt="МегаФон" 
+                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                />
+                <Badge className="bg-secondary text-white hover:bg-secondary/90">Официальный дилер</Badge>
+              </div>
               <h1 className="text-3xl md:text-6xl font-bold leading-tight">
                 Домашний интернет и ТВ от <span className="text-primary">МегаФон</span>
               </h1>
@@ -594,11 +601,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <img 
                   src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
                   alt="МегаФон" 
-                  className="h-8 w-8 object-contain"
+                  className="h-10 w-10 object-contain"
                 />
                 <span className="text-xl font-bold">МегаФон</span>
               </div>
