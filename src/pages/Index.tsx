@@ -10,9 +10,12 @@ import Icon from "@/components/ui/icon";
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isCallbackDialogOpen, setIsCallbackDialogOpen] = useState(false);
   const [selectedTariff, setSelectedTariff] = useState("");
   const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+  const [callbackFormData, setCallbackFormData] = useState({ name: "", phone: "", address: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isCallbackSubmitted, setIsCallbackSubmitted] = useState(false);
 
   const handleConnectClick = (tariffName: string) => {
     setSelectedTariff(tariffName);
@@ -29,6 +32,17 @@ const Index = () => {
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
     setIsSubmitted(false);
+  };
+
+  const handleCallbackSubmit = () => {
+    console.log("Callback request:", callbackFormData);
+    setIsCallbackSubmitted(true);
+    setCallbackFormData({ name: "", phone: "", address: "" });
+  };
+
+  const handleCloseCallbackDialog = () => {
+    setIsCallbackDialogOpen(false);
+    setIsCallbackSubmitted(false);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -450,7 +464,7 @@ const Index = () => {
                 <CardDescription className="text-white/90 mb-6">
                   Мы перезвоним в течение 15 минут и подберём лучший тариф
                 </CardDescription>
-                <Button size="lg" variant="secondary" className="mx-auto">
+                <Button size="lg" variant="secondary" className="mx-auto" onClick={() => setIsCallbackDialogOpen(true)}>
                   <Icon name="Phone" size={20} className="mr-2" />
                   Заказать звонок
                 </Button>
@@ -724,6 +738,84 @@ const Index = () => {
 
               <DialogFooter>
                 <Button onClick={handleCloseDialog} className="w-full">
+                  Закрыть
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isCallbackDialogOpen} onOpenChange={handleCloseCallbackDialog}>
+        <DialogContent className="sm:max-w-md">
+          {!isCallbackSubmitted ? (
+            <>
+              <DialogHeader>
+                <DialogTitle>Заказать обратный звонок</DialogTitle>
+                <DialogDescription>
+                  Оставьте свои контактные данные, и наш специалист перезвонит вам в течение 15 минут
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-4">
+                <Input
+                  placeholder="Ваше имя"
+                  value={callbackFormData.name}
+                  onChange={(e) => setCallbackFormData({ ...callbackFormData, name: e.target.value })}
+                />
+                <Input
+                  placeholder="Телефон"
+                  type="tel"
+                  value={callbackFormData.phone}
+                  onChange={(e) => setCallbackFormData({ ...callbackFormData, phone: e.target.value })}
+                />
+                <Input
+                  placeholder="Адрес подключения (необязательно)"
+                  value={callbackFormData.address}
+                  onChange={(e) => setCallbackFormData({ ...callbackFormData, address: e.target.value })}
+                />
+              </div>
+
+              <DialogFooter>
+                <Button 
+                  className="w-full" 
+                  onClick={handleCallbackSubmit}
+                  disabled={!callbackFormData.name || !callbackFormData.phone}
+                >
+                  Оставить заявку
+                </Button>
+              </DialogFooter>
+            </>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Icon name="CheckCircle2" className="text-primary" size={24} />
+                  Заявка принята
+                </DialogTitle>
+              </DialogHeader>
+              
+              <div className="space-y-4 py-4">
+                <p className="text-center text-muted-foreground">
+                  Благодарим за обращение!
+                </p>
+                <p className="text-center">
+                  Наш специалист свяжется с вами в ближайшее время для консультации по подключению и выбору оптимального тарифа.
+                </p>
+                <div className="bg-muted/50 p-4 rounded-lg space-y-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Clock" className="text-primary" size={16} />
+                    <span>Время ожидания: 15-30 минут</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Phone" className="text-primary" size={16} />
+                    <span>Телефон: 8-995-150-88-33</span>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter>
+                <Button onClick={handleCloseCallbackDialog} className="w-full">
                   Закрыть
                 </Button>
               </DialogFooter>
