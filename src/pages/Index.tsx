@@ -12,16 +12,23 @@ const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedTariff, setSelectedTariff] = useState("");
   const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleConnectClick = (tariffName: string) => {
     setSelectedTariff(tariffName);
     setIsDialogOpen(true);
+    setIsSubmitted(false);
   };
 
   const handleSubmit = () => {
     console.log("Form submitted:", { tariff: selectedTariff, ...formData });
-    setIsDialogOpen(false);
+    setIsSubmitted(true);
     setFormData({ name: "", phone: "", address: "" });
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+    setIsSubmitted(false);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -626,64 +633,102 @@ const Index = () => {
         </div>
       </footer>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isDialogOpen} onOpenChange={handleCloseDialog}>
         <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Подключить тариф "{selectedTariff}"</DialogTitle>
-            <DialogDescription>
-              Выберите удобный способ подключения
-            </DialogDescription>
-          </DialogHeader>
+          {!isSubmitted ? (
+            <>
+              <DialogHeader>
+                <DialogTitle>Подключить тариф "{selectedTariff}"</DialogTitle>
+                <DialogDescription>
+                  Выберите удобный способ подключения
+                </DialogDescription>
+              </DialogHeader>
 
-          <div className="space-y-4">
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold">Оставить заявку</h4>
-              <Input
-                placeholder="Ваше имя"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
-              <Input
-                placeholder="Телефон"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              />
-              <Input
-                placeholder="Адрес подключения"
-                value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              />
-              <Button 
-                className="w-full" 
-                onClick={handleSubmit}
-                disabled={!formData.name || !formData.phone || !formData.address}
-              >
-                Отправить заявку
-              </Button>
-            </div>
+              <div className="space-y-4">
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold">Оставить заявку</h4>
+                  <Input
+                    placeholder="Ваше имя"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  <Input
+                    placeholder="Телефон"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                  <Input
+                    placeholder="Адрес подключения"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  />
+                  <Button 
+                    className="w-full" 
+                    onClick={handleSubmit}
+                    disabled={!formData.name || !formData.phone || !formData.address}
+                  >
+                    Отправить заявку
+                  </Button>
+                </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">или</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold">Позвонить сейчас</h4>
+                  <Button 
+                    className="w-full" 
+                    variant="outline"
+                    onClick={() => window.location.href='tel:89951508833'}
+                  >
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    8-995-150-88-33
+                  </Button>
+                </div>
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">или</span>
+            </>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Icon name="CheckCircle2" className="text-primary" size={24} />
+                  Заявка принята
+                </DialogTitle>
+              </DialogHeader>
+              
+              <div className="space-y-4 py-4">
+                <p className="text-center text-muted-foreground">
+                  Благодарим за вашу заявку на подключение тарифа "{selectedTariff}".
+                </p>
+                <p className="text-center">
+                  Наш специалист свяжется с вами в ближайшее время для уточнения деталей.
+                </p>
+                <div className="bg-muted/50 p-4 rounded-lg space-y-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Clock" className="text-primary" size={16} />
+                    <span>Время ожидания: 15-30 минут</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Phone" className="text-primary" size={16} />
+                    <span>Телефон: 8-995-150-88-33</span>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold">Позвонить сейчас</h4>
-              <Button 
-                className="w-full" 
-                variant="outline"
-                onClick={() => window.location.href='tel:89951508833'}
-              >
-                <Icon name="Phone" size={20} className="mr-2" />
-                8-995-150-88-33
-              </Button>
-            </div>
-          </div>
+              <DialogFooter>
+                <Button onClick={handleCloseDialog} className="w-full">
+                  Закрыть
+                </Button>
+              </DialogFooter>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
