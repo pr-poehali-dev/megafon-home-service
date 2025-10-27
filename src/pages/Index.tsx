@@ -3,10 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedTariff, setSelectedTariff] = useState("");
+  const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+
+  const handleConnectClick = (tariffName: string) => {
+    setSelectedTariff(tariffName);
+    setIsDialogOpen(true);
+  };
+
+  const handleSubmit = () => {
+    console.log("Form submitted:", { tariff: selectedTariff, ...formData });
+    setIsDialogOpen(false);
+    setFormData({ name: "", phone: "", address: "" });
+  };
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -186,7 +202,10 @@ const Index = () => {
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-4 w-full sm:w-auto flex items-center justify-center" onClick={() => window.location.href='tel:89951508833'}>
                   <Icon name="Phone" size={20} className="mr-2" />
-                  8-995-150-88-33
+                  <span className="flex flex-col items-start">
+                    <span className="text-xs">Получить консультацию</span>
+                    <span className="font-semibold">8-995-150-88-33</span>
+                  </span>
                 </Button>
               </div>
             </div>
@@ -276,7 +295,11 @@ const Index = () => {
                       <span className="text-xs md:text-sm">{feature}</span>
                     </div>
                   ))}
-                  <Button className="w-full mt-4 md:mt-6 text-sm md:text-base" variant={tariff.popular ? "default" : "outline"}>
+                  <Button 
+                    className="w-full mt-4 md:mt-6 text-sm md:text-base" 
+                    variant={tariff.popular ? "default" : "outline"}
+                    onClick={() => handleConnectClick(tariff.name)}
+                  >
                     Подключить
                   </Button>
                 </CardContent>
@@ -602,6 +625,67 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Подключить тариф "{selectedTariff}"</DialogTitle>
+            <DialogDescription>
+              Выберите удобный способ подключения
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold">Оставить заявку</h4>
+              <Input
+                placeholder="Ваше имя"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+              <Input
+                placeholder="Телефон"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+              <Input
+                placeholder="Адрес подключения"
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              />
+              <Button 
+                className="w-full" 
+                onClick={handleSubmit}
+                disabled={!formData.name || !formData.phone || !formData.address}
+              >
+                Отправить заявку
+              </Button>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">или</span>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold">Позвонить сейчас</h4>
+              <Button 
+                className="w-full" 
+                variant="outline"
+                onClick={() => window.location.href='tel:89951508833'}
+              >
+                <Icon name="Phone" size={20} className="mr-2" />
+                8-995-150-88-33
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
