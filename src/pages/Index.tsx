@@ -163,7 +163,7 @@ const Index = () => {
       <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4 md:gap-5">
+            <div className="flex items-center gap-2">
               <img 
                 src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
                 alt="МегаФон" 
