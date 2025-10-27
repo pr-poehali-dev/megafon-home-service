@@ -164,9 +164,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <Icon name="Wifi" className="text-white" size={24} />
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
+                alt="МегаФон" 
+                className="h-10 w-10 object-contain"
+              />
               <span className="text-2xl font-bold text-primary">МегаФон</span>
             </div>
             
@@ -593,9 +595,11 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <Icon name="Wifi" className="text-white" size={20} />
-                </div>
+                <img 
+                  src="https://cdn.poehali.dev/files/2616f908-ee40-4416-9851-6cf0b19625a3.png" 
+                  alt="МегаФон" 
+                  className="h-8 w-8 object-contain"
+                />
                 <span className="text-xl font-bold">МегаФон</span>
               </div>
               <p className="text-sm text-white/70">
