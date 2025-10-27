@@ -16,27 +16,36 @@ const Index = () => {
 
   const tariffs = [
     {
-      name: "Стартовый",
-      speed: "100 Мбит/с",
-      price: "450",
-      oldPrice: "590",
-      features: ["Интернет 100 Мбит/с", "Wi-Fi роутер в аренду", "Подключение 0 ₽", "Техподдержка 24/7"],
+      name: "Турбо",
+      speed: "500 Мбит/с",
+      price: "275",
+      regularPrice: "550",
+      priceNote: "первые 2 месяца",
+      features: ["Интернет 500 Мбит/с", "Подключение 0 ₽", "Техподдержка 24/7"],
       popular: false,
     },
     {
-      name: "Оптимальный",
+      name: "Для домов всё",
       speed: "300 Мбит/с",
-      price: "650",
-      oldPrice: "790",
-      features: ["Интернет 300 Мбит/с", "Wi-Fi роутер в подарок", "Подключение 0 ₽", "Техподдержка 24/7", "200 ТВ-каналов"],
+      price: "325",
+      regularPrice: "650",
+      priceNote: "первые 2 месяца",
+      features: ["Интернет 300 Мбит/с", "Домашнее телевидение", "Подключение 0 ₽", "Техподдержка 24/7"],
       popular: true,
     },
     {
-      name: "Максимальный",
+      name: "Мега тариф",
       speed: "500 Мбит/с",
-      price: "850",
-      oldPrice: "990",
-      features: ["Интернет 500 Мбит/с", "Wi-Fi роутер премиум", "Подключение 0 ₽", "Техподдержка 24/7", "300 ТВ-каналов + HD"],
+      price: "735",
+      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "800 минут мобильной связи", "Подключение 0 ₽", "Техподдержка 24/7"],
+      popular: false,
+    },
+    {
+      name: "Семейный",
+      speed: "500 Мбит/с",
+      price: "910",
+      priceNote: "навсегда",
+      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "3 SIM-карты", "1700 минут на всех", "Подключение 0 ₽", "Техподдержка 24/7"],
       popular: false,
     },
   ];
@@ -143,11 +152,18 @@ const Index = () => {
               <button onClick={() => scrollToSection("faq")} className="text-sm font-medium hover:text-primary transition-colors">
                 FAQ
               </button>
+              <button onClick={() => scrollToSection("privacy")} className="text-sm font-medium hover:text-primary transition-colors">
+                Политика
+              </button>
             </nav>
 
             <Button size="lg" className="hidden md:flex">
               <Icon name="Phone" size={16} className="mr-2" />
-              8-800-550-05-00
+              8-995-150-88-33
+            </Button>
+
+            <Button size="icon" variant="default" className="md:hidden" onClick={() => window.location.href='tel:89951508833'}>
+              <Icon name="Phone" size={20} />
             </Button>
           </div>
         </div>
@@ -169,7 +185,9 @@ const Index = () => {
                   Выбрать тариф
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8" onClick={() => scrollToSection("contacts")}>
+                  <Icon name="Phone" size={20} className="mr-2 md:hidden" />
                   Получить консультацию
+                  <span className="md:hidden ml-2">8-995-150-88-33</span>
                 </Button>
               </div>
             </div>
@@ -225,7 +243,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {tariffs.map((tariff, index) => (
               <Card key={index} className={`relative hover:shadow-xl transition-all ${tariff.popular ? 'border-primary border-2 scale-105' : ''}`}>
                 {tariff.popular && (
@@ -244,7 +262,12 @@ const Index = () => {
                       <span className="text-4xl font-bold">{tariff.price} ₽</span>
                       <span className="text-muted-foreground">/мес</span>
                     </div>
-                    <div className="text-sm text-muted-foreground line-through">{tariff.oldPrice} ₽</div>
+                    {tariff.priceNote && (
+                      <div className="text-sm text-muted-foreground">{tariff.priceNote}</div>
+                    )}
+                    {tariff.regularPrice && (
+                      <div className="text-sm text-muted-foreground">далее {tariff.regularPrice} ₽/мес</div>
+                    )}
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -343,9 +366,11 @@ const Index = () => {
                     <div>
                       <CardTitle className="mb-2">Телефон</CardTitle>
                       <CardDescription className="text-base space-y-1">
-                        <div className="font-semibold text-foreground text-lg">8-800-550-05-00</div>
-                        <div>Бесплатно по России</div>
+                        <div className="font-semibold text-foreground text-lg">8-995-150-88-33</div>
+                        <div>Консультации и подключение</div>
                         <div>Ежедневно с 8:00 до 22:00</div>
+                        <div className="font-semibold text-foreground text-base mt-2">8-800-550-05-00</div>
+                        <div>Техподдержка 24/7 (бесплатно)</div>
                       </CardDescription>
                     </div>
                   </div>
@@ -447,6 +472,94 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="privacy" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Политика конфиденциальности</h2>
+            </div>
+
+            <Card className="bg-white">
+              <CardContent className="prose prose-sm max-w-none pt-6 space-y-6">
+                <div>
+                  <h3 className="text-xl font-bold mb-3">1. Общие положения</h3>
+                  <p className="text-muted-foreground">
+                    Настоящая Политика конфиденциальности персональных данных действует в отношении всей информации, 
+                    которую данный сайт может получить о Пользователе во время использования сайта.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">2. Сбор персональных данных</h3>
+                  <p className="text-muted-foreground mb-2">
+                    Персональные данные Пользователя (имя, телефон, email) собираются при:
+                  </p>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                    <li>Заполнении форм обратной связи</li>
+                    <li>Оформлении заявки на подключение услуг</li>
+                    <li>Обращении в службу поддержки</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">3. Цели обработки персональных данных</h3>
+                  <p className="text-muted-foreground mb-2">
+                    Персональные данные используются для:
+                  </p>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                    <li>Связи с Пользователем для консультации и оформления услуг</li>
+                    <li>Предоставления информации о тарифах и специальных предложениях</li>
+                    <li>Технической поддержки и решения возникающих проблем</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">4. Защита персональных данных</h3>
+                  <p className="text-muted-foreground">
+                    Мы применяем организационные и технические меры для защиты персональных данных от 
+                    несанкционированного доступа, изменения, раскрытия или уничтожения.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">5. Передача данных третьим лицам</h3>
+                  <p className="text-muted-foreground">
+                    Персональные данные могут быть переданы только официальным партнёрам МегаФон для 
+                    обработки заявок на подключение услуг. Мы не передаём данные третьим лицам в 
+                    коммерческих целях без согласия Пользователя.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">6. Права пользователя</h3>
+                  <p className="text-muted-foreground mb-2">
+                    Пользователь имеет право:
+                  </p>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                    <li>Получать информацию о хранящихся персональных данных</li>
+                    <li>Требовать уточнения, блокирования или удаления данных</li>
+                    <li>Отозвать согласие на обработку персональных данных</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-3">7. Контактная информация</h3>
+                  <p className="text-muted-foreground">
+                    По вопросам обработки персональных данных обращайтесь:<br/>
+                    Email: info@megafon-dealer.ru<br/>
+                    Телефон: 8-995-150-88-33
+                  </p>
+                </div>
+
+                <div className="text-sm text-muted-foreground pt-4 border-t">
+                  <p>Дата последнего обновления: 27 октября 2024 года</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-foreground text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
@@ -469,13 +582,15 @@ const Index = () => {
                 <li><button onClick={() => scrollToSection("how-to")} className="hover:text-white transition-colors">Как подключить</button></li>
                 <li><button onClick={() => scrollToSection("offers")} className="hover:text-white transition-colors">Акции</button></li>
                 <li><button onClick={() => scrollToSection("faq")} className="hover:text-white transition-colors">FAQ</button></li>
+                <li><button onClick={() => scrollToSection("privacy")} className="hover:text-white transition-colors">Политика конфиденциальности</button></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Контакты</h3>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>8-800-550-05-00</li>
+                <li>8-995-150-88-33 (консультации)</li>
+                <li>8-800-550-05-00 (техподдержка)</li>
                 <li>info@megafon-dealer.ru</li>
                 <li>г. Москва, ул. Тверская, д. 1</li>
               </ul>
