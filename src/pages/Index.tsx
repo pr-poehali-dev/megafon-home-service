@@ -21,7 +21,7 @@ const Index = () => {
       price: "275",
       regularPrice: "550",
       priceNote: "первые 2 месяца",
-      features: ["Интернет 500 Мбит/с", "Подключение 0 ₽", "Техподдержка 24/7"],
+      features: ["Интернет 500 Мбит/с", "Аренда Wi-Fi роутера", "Техподдержка 24/7"],
       popular: false,
     },
     {
@@ -30,14 +30,14 @@ const Index = () => {
       price: "325",
       regularPrice: "650",
       priceNote: "первые 2 месяца",
-      features: ["Интернет 300 Мбит/с", "Домашнее телевидение", "Подключение 0 ₽", "Техподдержка 24/7"],
+      features: ["Интернет 300 Мбит/с", "180 ТВ-каналов", "Аренда Wi-Fi роутера", "Техподдержка 24/7"],
       popular: true,
     },
     {
       name: "Мега тариф",
       speed: "500 Мбит/с",
       price: "735",
-      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "800 минут мобильной связи", "Подключение 0 ₽", "Техподдержка 24/7"],
+      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "800 минут мобильной связи", "Аренда Wi-Fi роутера", "Техподдержка 24/7"],
       popular: false,
     },
     {
@@ -45,7 +45,7 @@ const Index = () => {
       speed: "500 Мбит/с",
       price: "910",
       priceNote: "навсегда",
-      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "3 SIM-карты", "1700 минут на всех", "Подключение 0 ₽", "Техподдержка 24/7"],
+      features: ["Интернет 500 Мбит/с", "250 ТВ-каналов", "3 SIM-карты", "1700 минут на всех", "Аренда Wi-Fi роутера", "Техподдержка 24/7"],
       popular: false,
     },
   ];
@@ -169,64 +169,63 @@ const Index = () => {
         </div>
       </header>
 
-      <section id="home" className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-background py-20 md:py-32">
+      <section id="home" className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-background py-12 md:py-32">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6">
               <Badge className="bg-secondary text-white hover:bg-secondary/90">Официальный дилер</Badge>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl md:text-6xl font-bold leading-tight">
                 Домашний интернет и ТВ от <span className="text-primary">МегаФон</span>
               </h1>
-              <p className="text-lg text-muted-foreground">
-                Высокоскоростной интернет до 500 Мбит/с и 300+ ТВ-каналов. Бесплатное подключение и настройка оборудования.
+              <p className="text-base md:text-lg text-muted-foreground">
+                Высокоскоростной интернет до 500 Мбит/с и 300+ ТВ-каналов
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8" onClick={() => scrollToSection("tariffs")}>
+              <div className="flex flex-col gap-3">
+                <Button size="lg" className="text-base md:text-lg px-6 w-full sm:w-auto" onClick={() => scrollToSection("tariffs")}>
                   Выбрать тариф
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8" onClick={() => scrollToSection("contacts")}>
-                  <Icon name="Phone" size={20} className="mr-2 md:hidden" />
-                  Получить консультацию
-                  <span className="md:hidden ml-2">8-995-150-88-33</span>
+                <Button size="lg" variant="outline" className="text-base px-4 w-full sm:w-auto flex items-center justify-center" onClick={() => window.location.href='tel:89951508833'}>
+                  <Icon name="Phone" size={20} className="mr-2" />
+                  8-995-150-88-33
                 </Button>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
-                    <Icon name="Wifi" className="text-primary" size={24} />
+                <CardHeader className="p-3 md:p-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="Wifi" className="text-primary" size={20} />
                   </div>
-                  <CardTitle>До 500 Мбит/с</CardTitle>
-                  <CardDescription>Скорость интернета</CardDescription>
+                  <CardTitle className="text-base md:text-lg">До 500 Мбит/с</CardTitle>
+                  <CardDescription className="text-xs md:text-sm">Скорость интернета</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-2">
-                    <Icon name="Tv" className="text-secondary" size={24} />
+                <CardHeader className="p-3 md:p-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="Tv" className="text-secondary" size={20} />
                   </div>
-                  <CardTitle>300+ каналов</CardTitle>
-                  <CardDescription>ТВ в HD качестве</CardDescription>
+                  <CardTitle className="text-base md:text-lg">300+ каналов</CardTitle>
+                  <CardDescription className="text-xs md:text-sm">ТВ в HD качестве</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
-                    <Icon name="Clock" className="text-primary" size={24} />
+                <CardHeader className="p-3 md:p-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="Clock" className="text-primary" size={20} />
                   </div>
-                  <CardTitle>1-3 дня</CardTitle>
-                  <CardDescription>Быстрое подключение</CardDescription>
+                  <CardTitle className="text-base md:text-lg">1-3 дня</CardTitle>
+                  <CardDescription className="text-xs md:text-sm">Быстрое подключение</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-2">
-                    <Icon name="Shield" className="text-secondary" size={24} />
+                <CardHeader className="p-3 md:p-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-2">
+                    <Icon name="Shield" className="text-secondary" size={20} />
                   </div>
-                  <CardTitle>24/7</CardTitle>
-                  <CardDescription>Техподдержка</CardDescription>
+                  <CardTitle className="text-base md:text-lg">24/7</CardTitle>
+                  <CardDescription className="text-xs md:text-sm">Техподдержка</CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -234,12 +233,12 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="tariffs" className="py-20 bg-muted/30">
+      <section id="tariffs" className="py-12 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Тарифы интернета и ТВ</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Выберите оптимальный тариф для вашего дома. Все тарифы включают бесплатное подключение.
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4">Тарифы интернета и ТВ</h2>
+            <p className="text-sm md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Выберите оптимальный тариф для вашего дома
             </p>
           </div>
 
@@ -251,33 +250,33 @@ const Index = () => {
                     <Badge className="bg-secondary text-white px-4 py-1">Популярный</Badge>
                   </div>
                 )}
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-2xl mb-2">{tariff.name}</CardTitle>
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <Icon name="Gauge" className="text-primary" size={32} />
-                    <span className="text-3xl font-bold text-primary">{tariff.speed}</span>
+                <CardHeader className="text-center pb-3 md:pb-4 p-4 md:p-6">
+                  <CardTitle className="text-lg md:text-2xl mb-2">{tariff.name}</CardTitle>
+                  <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+                    <Icon name="Gauge" className="text-primary" size={24} />
+                    <span className="text-xl md:text-3xl font-bold text-primary">{tariff.speed}</span>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-4xl font-bold">{tariff.price} ₽</span>
-                      <span className="text-muted-foreground">/мес</span>
+                      <span className="text-2xl md:text-4xl font-bold">{tariff.price} ₽</span>
+                      <span className="text-muted-foreground text-sm">/мес</span>
                     </div>
                     {tariff.priceNote && (
-                      <div className="text-sm text-muted-foreground">{tariff.priceNote}</div>
+                      <div className="text-xs md:text-sm text-muted-foreground">{tariff.priceNote}</div>
                     )}
                     {tariff.regularPrice && (
-                      <div className="text-sm text-muted-foreground">далее {tariff.regularPrice} ₽/мес</div>
+                      <div className="text-xs md:text-sm text-muted-foreground">далее {tariff.regularPrice} ₽/мес</div>
                     )}
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-2 md:space-y-3 p-4 md:p-6">
                   {tariff.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <Icon name="CheckCircle2" className="text-primary mt-0.5 flex-shrink-0" size={18} />
-                      <span className="text-sm">{feature}</span>
+                      <Icon name="CheckCircle2" className="text-primary mt-0.5 flex-shrink-0" size={16} />
+                      <span className="text-xs md:text-sm">{feature}</span>
                     </div>
                   ))}
-                  <Button className="w-full mt-6" variant={tariff.popular ? "default" : "outline"}>
+                  <Button className="w-full mt-4 md:mt-6 text-sm md:text-base" variant={tariff.popular ? "default" : "outline"}>
                     Подключить
                   </Button>
                 </CardContent>
@@ -287,7 +286,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="how-to" className="py-20">
+      <section id="how-to" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Как подключить интернет</h2>
@@ -320,7 +319,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="offers" className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section id="offers" className="py-12 md:py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Специальные предложения</h2>
@@ -346,7 +345,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contacts" className="py-20 bg-muted/30">
+      <section id="contacts" className="py-12 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -377,18 +376,20 @@ const Index = () => {
                 </CardHeader>
               </Card>
 
+
+
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="MapPin" className="text-secondary" size={24} />
+                      <Icon name="MessageCircle" className="text-secondary" size={24} />
                     </div>
                     <div>
-                      <CardTitle className="mb-2">Адрес офиса</CardTitle>
+                      <CardTitle className="mb-2">Мессенджеры</CardTitle>
                       <CardDescription className="text-base space-y-1">
-                        <div>г. Москва, ул. Тверская, д. 1</div>
-                        <div>ТЦ "Центральный", 2 этаж</div>
-                        <div>Пн-Пт: 9:00-20:00, Сб-Вс: 10:00-18:00</div>
+                        <div className="font-semibold text-foreground text-lg">8-995-150-88-33</div>
+                        <div>WhatsApp / Telegram</div>
+                        <div>Консультации и подключение</div>
                       </CardDescription>
                     </div>
                   </div>
@@ -406,23 +407,6 @@ const Index = () => {
                       <CardDescription className="text-base space-y-1">
                         <div className="font-semibold text-foreground">info@megafon-dealer.ru</div>
                         <div>Ответим в течение 1 часа</div>
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon name="MessageCircle" className="text-secondary" size={24} />
-                    </div>
-                    <div>
-                      <CardTitle className="mb-2">Мессенджеры</CardTitle>
-                      <CardDescription className="text-base space-y-1">
-                        <div>WhatsApp: +7 (999) 123-45-67</div>
-                        <div>Telegram: @megafon_dealer</div>
                       </CardDescription>
                     </div>
                   </div>
@@ -446,7 +430,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="faq" className="py-20">
+      <section id="faq" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
@@ -472,7 +456,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="privacy" className="py-20 bg-muted/30">
+      <section id="privacy" className="py-12 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -589,19 +573,26 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Контакты</h3>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>8-995-150-88-33 (консультации)</li>
-                <li>8-800-550-05-00 (техподдержка)</li>
+                <li>8-995-150-88-33</li>
                 <li>info@megafon-dealer.ru</li>
-                <li>г. Москва, ул. Тверская, д. 1</li>
+                <li>WhatsApp / Telegram</li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Режим работы</h3>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>Пн-Пт: 9:00-20:00</li>
-                <li>Сб-Вс: 10:00-18:00</li>
-                <li>Горячая линия: 24/7</li>
+                <li>Консультации: 8:00-22:00</li>
+                <li>Ежедневно</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Техподдержка</h3>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li>8-800-550-05-00</li>
+                <li>Бесплатно по России</li>
+                <li>Круглосуточно 24/7</li>
               </ul>
             </div>
           </div>
